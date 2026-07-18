@@ -437,3 +437,10 @@ function initializeMobileMenu() {
         });
     });
 }
+const mobileToggle = document.getElementById('mobileToggle');
+const navMenu = document.getElementById('navMenu');
+
+mobileToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    mobileToggle.classList.toggle('open'); // Optional visual spin/cross effect
+});
