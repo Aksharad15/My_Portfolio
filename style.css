@@ -1115,153 +1115,215 @@ body {
     .about-layout { flex-direction: column; text-align: center; }
 }
 /* ==========================================================================
+   DESKTOP ONLY EFFECTS
+   ========================================================================== */
+@media (min-width: 769px) {
+    * {
+        cursor: none !important; /* Premium system cursor restricted to desktop only */
+    }
+}
+
+/* ==========================================================================
    MOBILE & RESPONSIVE DESIGN (Max-width: 768px)
    ========================================================================== */
 @media screen and (max-width: 768px) {
     
-    /* 1. Global Containers */
-    .section-container, .hero-container, .nav-container {
-        padding: 0 20px;
+    /* 1. Global Components & Reset */
+    * {
+        pointer-events: auto !important; /* Ensures seamless touch responsiveness */
+    }
+    
+    body {
+        overflow-x: hidden;
+    }
+
+    .section-container {
+        padding: 4rem 1.25rem; /* Re-established elegant vertical spacing */
+    }
+    
+    .hero-container {
+        padding: 2rem 1.25rem;
+    }
+    
+    .nav-container {
+        padding: 1.25rem 1.25rem;
+    }
+
+    .section-title { 
+        font-size: 2.25rem; 
+        margin-bottom: 2.5rem;
     }
 
     /* 2. Hero Section Mobile Optimization */
+    .hero-section {
+        padding-top: 80px;
+        min-height: auto;
+    }
+
     .hero-layout {
         flex-direction: column;
         text-align: center;
-        gap: 30px;
-        padding-top: 40px;
+        gap: 2rem;
     }
 
     .hero-image-wrapper {
         margin: 0 auto;
-        width: 180px; /* Scaling down profile picture slightly for mobile screens */
-        height: 180px;
+        width: 220px; /* Perfectly scaled down container frame */
+        height: 220px;
     }
 
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2.75rem;
+        line-height: 1.1;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.5rem;
+        min-height: auto;
     }
 
     .hero-ctas {
         justify-content: center;
         flex-direction: column;
-        gap: 12px;
+        gap: 0.75rem;
         width: 100%;
     }
 
     .hero-ctas .btn {
-        width: 100%; /* Full width buttons for easier thumb tapping */
+        width: 100%; /* Accessible full-width thumb targets */
         text-align: center;
     }
 
     /* Hero Quick Statistics Grid */
     .hero-stats {
-        grid-template-columns: repeat(2, 1fr); /* 2x2 grid instead of a flat horizontal row */
-        gap: 15px;
-        margin-top: 40px;
+        grid-template-columns: repeat(2, 1fr); /* Clean 2x2 presentation grid layout */
+        gap: 1rem;
+    }
+    
+    .stat-num {
+        font-size: 2rem;
     }
 
     /* 3. Navigation Menu Mobile State */
-    /* Assumes your script.js toggles an 'active' class on #navMenu */
+    .mobile-toggle { 
+        display: flex; 
+        z-index: 1001;
+    }
+    
     .nav-menu {
-        position: fixed;
-        top: 70px; /* Adjust based on your header height */
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 70px);
-        background: rgba(15, 15, 20, 0.95); /* High opacity glassmorphism fallback */
-        backdrop-filter: blur(10px);
-        flex-direction: column;
+        position: fixed; 
+        top: 0; 
+        left: -100%; 
+        width: 100%; 
+        height: 100vh;
+        background: rgba(10, 10, 12, 0.98); /* Deep glassmorphism opacity blend */
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column; 
         align-items: center;
         justify-content: center;
-        gap: 30px;
-        transition: left 0.4s ease;
-        z-index: 999;
+        padding-top: 2rem; 
+        gap: 2.5rem; 
+        transition: var(--transition-smooth);
+        z-index: 1000;
+    }
+    
+    .nav-menu.active { 
+        left: 0; 
     }
 
-    .nav-menu.active {
-        left: 0;
+    /* Hamburger Menu Animation Transmutation State */
+    .mobile-toggle.open span:nth-child(1) {
+        transform: rotate(45deg) translate(6px, 6px);
     }
-
-    .mobile-toggle {
-        display: block; /* Shows your custom hamburger menu button */
+    .mobile-toggle.open span:nth-child(2) {
+        opacity: 0;
+    }
+    .mobile-toggle.open span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
     }
 
     /* 4. About & Experience Section */
     .about-layout {
         flex-direction: column;
         text-align: center;
-        padding: 30px 20px;
-    }
-
-    .about-icon-brand {
-        margin-bottom: 15px;
+        gap: 1.5rem;
     }
 
     /* 5. Education Timeline Mobilization */
-    .timeline-wrapper {
-        padding-left: 20px;
+    .timeline-line { 
+        left: 16px; 
+        transform: none;
     }
-
-    .timeline-line {
-        left: 20px; /* Moves central timeline bar to the far left edge */
+    
+    .education-card-wrapper { 
+        width: 100% !important; 
+        padding-left: 2.5rem !important; 
+        padding-right: 0 !important; 
+        left: 0 !important; 
     }
-
-    .education-card-wrapper {
-        width: 100% !important;
-        float: none !important;
-        padding-left: 30px !important;
-        padding-right: 0 !important;
-        margin-bottom: 30px;
-    }
-
-    .education-card-wrapper.left .timeline-dot,
-    .education-card-wrapper.right .timeline-dot {
-        left: 16px; /* Uniformly aligns dots down the left track */
+    
+    .timeline-dot { 
+        left: 8px !important; 
+        right: auto !important;
     }
 
     /* 6. Grids Breakdown (Skills, Projects, Certifications) */
     .skills-grid, 
     .projects-grid, 
     .certifications-grid {
-        grid-template-columns: 1fr; /* Strict single column stacks */
-        gap: 20px;
+        grid-template-columns: 1fr; /* Rigid clean stack deployment */
+        gap: 1.5rem;
     }
 
     .skills-metrics-flex {
-        flex-direction: column;
-        align-items: center;
-        gap: 25px;
+        flex-direction: row;
+        justify-content: space-around;
+        gap: 10px;
     }
 
-    /* 7. Contact UI Elements */
+    /* 7. 3D Card Interactivity Override Rules */
+    .tilt-target {
+        transform: none !important;
+        transition: none !important;
+    }
+    .tilt-target:hover {
+        transform: translateY(-2px) !important; /* Gentle fallback translation */
+    }
+
+    /* 8. Contact UI Elements */
     .contact-layout {
         grid-template-columns: 1fr;
-        gap: 30px;
+        gap: 2rem;
     }
 
     .contact-info-block {
-        order: 2; /* Form takes priority placement above coordinates */
+        order: 2; /* Content layout structural flip for UX */
     }
 
     .contact-form-block {
         order: 1;
-        padding: 25px 20px;
+        padding: 1.75rem 1.25rem;
     }
     
-    /* Disable aggressive cursor effects for touch inputs */
+    /* Hard deletion of cursor modules on touch devices */
     .custom-cursor, 
     .cursor-spotlight {
         display: none !important;
     }
 }
 
-/* Minor optimization adjustment for micro-screens */
+/* Optimization adjustment for micro-screens */
 @media screen and (max-width: 480px) {
     .hero-stats {
-        grid-template-columns: 1fr; /* Stacks completely flat on narrow devices */
+        grid-template-columns: 1fr; /* Safe breakdown structural stack */
     }
     .hero-title {
-        font-size: 2rem;
+        font-size: 2.25rem;
+    }
+    .skills-metrics-flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
     }
 }
