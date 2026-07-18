@@ -1114,3 +1114,154 @@ body {
     .skills-grid, .projects-grid, .certifications-grid { grid-template-columns: 1fr; }
     .about-layout { flex-direction: column; text-align: center; }
 }
+/* ==========================================================================
+   MOBILE & RESPONSIVE DESIGN (Max-width: 768px)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Global Containers */
+    .section-container, .hero-container, .nav-container {
+        padding: 0 20px;
+    }
+
+    /* 2. Hero Section Mobile Optimization */
+    .hero-layout {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+        padding-top: 40px;
+    }
+
+    .hero-image-wrapper {
+        margin: 0 auto;
+        width: 180px; /* Scaling down profile picture slightly for mobile screens */
+        height: 180px;
+    }
+
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .hero-ctas {
+        justify-content: center;
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+
+    .hero-ctas .btn {
+        width: 100%; /* Full width buttons for easier thumb tapping */
+        text-align: center;
+    }
+
+    /* Hero Quick Statistics Grid */
+    .hero-stats {
+        grid-template-columns: repeat(2, 1fr); /* 2x2 grid instead of a flat horizontal row */
+        gap: 15px;
+        margin-top: 40px;
+    }
+
+    /* 3. Navigation Menu Mobile State */
+    /* Assumes your script.js toggles an 'active' class on #navMenu */
+    .nav-menu {
+        position: fixed;
+        top: 70px; /* Adjust based on your header height */
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(15, 15, 20, 0.95); /* High opacity glassmorphism fallback */
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 30px;
+        transition: left 0.4s ease;
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .mobile-toggle {
+        display: block; /* Shows your custom hamburger menu button */
+    }
+
+    /* 4. About & Experience Section */
+    .about-layout {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px 20px;
+    }
+
+    .about-icon-brand {
+        margin-bottom: 15px;
+    }
+
+    /* 5. Education Timeline Mobilization */
+    .timeline-wrapper {
+        padding-left: 20px;
+    }
+
+    .timeline-line {
+        left: 20px; /* Moves central timeline bar to the far left edge */
+    }
+
+    .education-card-wrapper {
+        width: 100% !important;
+        float: none !important;
+        padding-left: 30px !important;
+        padding-right: 0 !important;
+        margin-bottom: 30px;
+    }
+
+    .education-card-wrapper.left .timeline-dot,
+    .education-card-wrapper.right .timeline-dot {
+        left: 16px; /* Uniformly aligns dots down the left track */
+    }
+
+    /* 6. Grids Breakdown (Skills, Projects, Certifications) */
+    .skills-grid, 
+    .projects-grid, 
+    .certifications-grid {
+        grid-template-columns: 1fr; /* Strict single column stacks */
+        gap: 20px;
+    }
+
+    .skills-metrics-flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+
+    /* 7. Contact UI Elements */
+    .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .contact-info-block {
+        order: 2; /* Form takes priority placement above coordinates */
+    }
+
+    .contact-form-block {
+        order: 1;
+        padding: 25px 20px;
+    }
+    
+    /* Disable aggressive cursor effects for touch inputs */
+    .custom-cursor, 
+    .cursor-spotlight {
+        display: none !important;
+    }
+}
+
+/* Minor optimization adjustment for micro-screens */
+@media screen and (max-width: 480px) {
+    .hero-stats {
+        grid-template-columns: 1fr; /* Stacks completely flat on narrow devices */
+    }
+    .hero-title {
+        font-size: 2rem;
+    }
+}
