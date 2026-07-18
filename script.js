@@ -414,6 +414,7 @@ function initializeStatsCounter() {
 }
 
 /* Mobile Responsive Adaptive Menu Drawer System */
+/* Mobile Responsive Adaptive Menu Drawer System */
 function initializeMobileMenu() {
     const toggle = document.getElementById('mobileToggle');
     const menu = document.getElementById('navMenu');
@@ -421,26 +422,27 @@ function initializeMobileMenu() {
 
     if (!toggle || !menu) return;
 
-    toggle.addEventListener('click', () => {
+    toggle.addEventListener('click', (e) => {
+        e.stopPropagation();
         menu.classList.toggle('active');
-        toggle.classList.toggle('active');
+        toggle.classList.toggle('open'); // Generates structural crossover bar transition
     });
 
     links.forEach(link => {
         link.addEventListener('click', () => {
             menu.classList.remove('active');
-            toggle.classList.remove('active');
+            toggle.classList.remove('open');
             
-            // Adjust header tracking configurations locally
             links.forEach(l => l.classList.remove('active'));
             link.classList.add('active');
         });
     });
-}
-const mobileToggle = document.getElementById('mobileToggle');
-const navMenu = document.getElementById('navMenu');
 
-mobileToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    mobileToggle.classList.toggle('open'); // Optional visual spin/cross effect
-});
+    // Close menu when tapping anywhere outside the viewport drawer
+    document.addEventListener('click', (e) => {
+        if (!menu.contains(e.target) && !toggle.contains(e.target) && menu.classList.contains('active')) {
+            menu.classList.remove('active');
+            toggle.classList.remove('open');
+        }
+    });
+}
